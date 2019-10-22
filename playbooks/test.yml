@@ -1,0 +1,39 @@
+- hosts: raspberry-pi
+  user: pi
+  vars:
+    solr820_url: "https://archive.apache.org/dist/lucene/solr/8.2.0/solr-8.2.0.tgz"
+    solr772_url: "https://archive.apache.org/dist/lucene/solr/7.7.2/solr-7.7.2.tgz"
+    build_dir: /home/pi/solr 
+  tasks:
+    - name: download solr820 
+      get_url: url={{ solr820_url }}
+               dest=~/solr-8.2.0.tar.gz force=True
+      register: downloaded_tarball
+      #- name: check the final result already exists
+      #stat: path={{dest }}
+      #register: sti
+      # - name: mkdir
+      #command: mkdir ~/solr 
+
+      #- name: untar the solr
+      #- unarchive:
+      #  src=solr-8.2.0.tar.gz
+      #  dest=/home/pi/solr
+    
+    - name: download solr772 
+      get_url: url={{solr772_url}}
+               dest=~/solr-7.7.2.tar.gz  force=True
+      register: download_tarball 
+    
+    - name: unarchive solr820
+      command: tar zxvf /home/pi/solr-8.2.0.tar.gz 
+    
+    - name: unarchive solr772 
+      command: tar zxvf /home/pi/solr-7.7.2.tar.gz 
+    
+    - name: run solr882 
+      command: /home/pi/solr-8.2.0/bin/solr restart
+    
+    - name: create core for solr882 
+      command:  /home/pi/solr-8.2.0/bin/solr create_core -c "livedoor" 
+

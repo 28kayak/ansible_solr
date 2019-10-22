@@ -1,0 +1,6 @@
+[raspberry-pi]
+192.168.10.80 ansible_user=pi ansible_password=respberry
+192.168.10.81 ansible_user=pi ansible_password=respberry 
+192.168.10.82 ansible_user=pi ansible_password=respberry 
+192.168.10.83 ansible_user=pi ansible_password=respberry 
+
