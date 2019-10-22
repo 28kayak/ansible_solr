@@ -25,15 +25,17 @@
                dest=~/solr-7.7.2.tar.gz  force=True
       register: download_tarball 
     
-    - name: unarchive solr820
+    - name: unarchive solr820 
+      #use absolute path
       command: tar zxvf /home/pi/solr-8.2.0.tar.gz 
     
     - name: unarchive solr772 
       command: tar zxvf /home/pi/solr-7.7.2.tar.gz 
     
-    - name: run solr882 
+    - name: run solr820 
       command: /home/pi/solr-8.2.0/bin/solr restart
     
     - name: create core for solr882 
       command:  /home/pi/solr-8.2.0/bin/solr create_core -c "livedoor" 
 
+      
